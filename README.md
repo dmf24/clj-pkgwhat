@@ -1,6 +1,6 @@
 ## clj-pkgwhat
 
-This is a trivial [Babashka](https://babashka.org) script to resolve common package manager queries from standard names.
+This is a trivial [Babashka](https://babashka.org) script to resolve common package manager queries from standard names.  For it to work, Babashka must be available in the `PATH` as `bb`.
 
 This currently supports Ubuntu and Debian like distros, Red Hat and Fedora like distros, Arch Linux and Alpine Linux.
 
