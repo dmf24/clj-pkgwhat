@@ -35,7 +35,12 @@ EOF
 chmod 755 $targ_pkgwhat
 
 (cd $targetbin
- ln -s pkgwhat which-package-has-file
- ln -s pkgwhat installed-packages
- ln -s pkgwhat files-in-package
- ln -s pkgwhat package-info)
+ for fname in which-package-has-file \
+		  installed-packages \
+		  files-in-package \
+		  package-info
+ do
+     test -f $fname && rm $fname
+     ln -s pkgwhat $fname
+ done
+)

@@ -5,7 +5,7 @@
             [clojure.string :as str]))
 
 
-(def oslikes
+(def os-ids
   {
    "ubuntu debian" {
                     "which-package-has-file" ["dpkg" "--search" :argument]
@@ -50,7 +50,7 @@
                    :when (str/starts-with? line varname)]
                (str/trim (last (str/split line #"=" 2)))))))))
 
-(defn get-os-release []
+(defn get-os-idlike []
   (let [idlike (get-os-id "ID_LIKE=")]
     (if (nil? idlike)
       (get-os-id "ID=")
@@ -59,6 +59,6 @@
 (let [query-cmd (first *command-line-args*)
       sarg (first (rest *command-line-args*))
       shell-command (replace {:argument sarg}
-                             ((oslikes (get-os-release))
+                             ((os-ids (get-os-idlike))
                               query-cmd))]
   (println (:out (apply shell/sh shell-command))))
