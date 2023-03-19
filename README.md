@@ -1,12 +1,12 @@
 ## clj-pkgwhat
 
-This is a trivial babashka script to resolve common package manager queries from standard names.
+This is a trivial [Babashka](https://babashka.org) script to resolve common package manager queries from standard names.
 
-This currently supports distros like Ubuntu and Debian, Red Hat and Fedora, Alpine and Arch linux.
+This currently supports Ubuntu and Debian like distros, Red Hat and Fedora like distros, Arch Linux and Alpine Linux.
 
 ### Install
 
-This will install a script along with symlinks to $HOME/bin
+This will install a script along with symlinks to `$HOME/bin`
 
 ```
 git clone https://github.com/dmf24/clj-pkgwhat.git
@@ -25,6 +25,8 @@ sudo ./install.sh /usr/local/bin
 This lists all files in the specified package.
 
 ```
+$ singularity-3.11.0 shell alpine.sif 
+Singularity> export PATH=$PATH:$HOME/bin
 Singularity> files-in-package emacs-nox | tail
 usr/share/icons/hicolor/48x48/apps/emacs.png
 usr/share/icons/hicolor/scalable/apps/emacs.ico
@@ -42,6 +44,7 @@ This lists all installed packages known by the package manager.
 
 ```
 $ singularity-3.11.0 shell alpine.sif 
+Singularity> export PATH=$PATH:$HOME/bin
 Singularity> installed-packages | tail -4
 restic-bash-completion-0.14.0-r5 x86_64 {restic} (BSD-2-Clause)
 fbida-2.14-r2 x86_64 {fbida} (GPL-2.0-only)
