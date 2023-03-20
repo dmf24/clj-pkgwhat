@@ -58,6 +58,8 @@
 
 (def jn str/join)
 
+(defn in? [itm coll] (some #(= % itm) coll))
+
 (if (> (count *command-line-args*) 1)
   (let [query-cmd (first *command-line-args*)
         sarg (first (rest *command-line-args*))
@@ -68,6 +70,8 @@
   (doseq [[osid cmds] os-ids]
     (println osid)
     (doseq [[cmd args] cmds]
-      (let [cmdpad (repeat (- 24 (count cmd)) " ")]
-      (println "  " (str/join ""  (concat [cmd ":"] cmdpad))
-               (jn " " (replace {:argument "<arg>"} args)))))))
+      (let [argrep (if (in? :argument args) " <arg>" "")
+            cmdpad (repeat (- 30 (+ (count cmd)
+                                    (count argrep))) " ")]
+        (println "  " (str/join ""  (concat [cmd argrep ":"] cmdpad))
+                 (jn " " (replace {:argument "<arg>"} args)))))))
