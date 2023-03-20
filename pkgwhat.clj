@@ -56,9 +56,18 @@
       (get-os-id "ID=")
       idlike)))
 
-(let [query-cmd (first *command-line-args*)
-      sarg (first (rest *command-line-args*))
-      shell-command (replace {:argument sarg}
-                             ((os-ids (get-os-idlike))
-                              query-cmd))]
-  (println (:out (apply shell/sh shell-command))))
+(def jn str/join)
+
+(if (> (count *command-line-args*) 1)
+  (let [query-cmd (first *command-line-args*)
+        sarg (first (rest *command-line-args*))
+        shell-command (replace {:argument sarg}
+                               ((os-ids (get-os-idlike))
+                                query-cmd))]
+    (println (:out (apply shell/sh shell-command))))
+  (doseq [[osid cmds] os-ids]
+    (println osid)
+    (doseq [[cmd args] cmds]
+      (let [cmdpad (repeat (- 24 (count cmd)) " ")]
+      (println "  " (str/join ""  (concat [cmd ":"] cmdpad))
+               (jn " " (replace {:argument "<arg>"} args)))))))

@@ -20,6 +20,32 @@ To install to /usr/local/bin
 sudo ./install.sh /usr/local/bin
 ```
 
+###
+```
+ubuntu debian
+   which-package-has-file:   dpkg --search <arg>
+   installed-packages:       dpkg -l
+   files-in-package:         dpkg -L <arg>
+   package-info:             apt-cache show <arg>
+rhel fedora
+   which-package-has-file:   repoquery --installed -f <arg>
+   installed-packages:       yum list installed
+   files-in-package:         repoquery --installed -l <arg>
+   package-info:             yum info <arg>
+arch
+   which-package-has-file:   pacman -Qo <arg>
+   installed-packages:       pacman -Q
+   explicit-packages:        pacman -Qet
+   files-in-package:         pacman -Ql <arg>
+   package-info:             pacman -Si <arg>
+alpine
+   which-package-has-file:   apk info --who-owns <arg>
+   installed-packages:       apk list
+   files-in-package:         apk info --contents <arg>
+   package-info:             apk info <arg>
+```
+
+
 ### files-in-package
 
 This lists all files in the specified package.
