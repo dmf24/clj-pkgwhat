@@ -20,7 +20,8 @@ To install to /usr/local/bin
 sudo ./install.sh /usr/local/bin
 ```
 
-###
+### Command map
+
 ```
 ubuntu debian
    which-package-has-file:   dpkg --search <arg>
